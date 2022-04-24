@@ -1,0 +1,20 @@
+{
+  "name": "WebpageTelemetry",
+  "description": "Telemetry data to webpage",
+  "dll_file": "WebpageTelemetry.dll",
+  "last_edit": 637848548003420801,
+  "pub_id": "",
+  "json_version": "",
+  "version": "1.0.0",
+  "tagline": "",
+  "repository": "",
+  "is_public": false,
+  "unlisted": false,
+  "preview_image": "",
+  "web_preview_image": "",
+  "dependencies": [
+    "HtmlAgilityPack.dll"
+  ],
+  "mod_dependencies": null,
+  "ContentType": 3
+}

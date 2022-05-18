@@ -29,7 +29,7 @@ namespace WebpageTelemetry
         public Settings settings;
         public UnityAction<bool> rwrChanged;
         public UnityAction<bool> dataChanged;
-        public bool rwrEnabled = false;
+        public bool rwrEnabled = true;
         public bool dataEnabled = true;
 
         // This method is run once, when the Mod Loader is done initialising this game object

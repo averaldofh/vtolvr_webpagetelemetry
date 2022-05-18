@@ -28,12 +28,11 @@ namespace WebpageTelemetry
         {
             Actor player = FlightSceneManager.instance.playerActor;
             ModuleRWR rWR = player.GetComponentInChildren<ModuleRWR>();
+            DashRWR dashRWR = VTOLAPI.GetPlayersVehicleGameObject().GetComponentInChildren<DashRWR>();
 
             if (rWR.isLocked) //when player gets locked
             {
                 Actor locker = new Actor();
-                //Vector3 Ppos;
-                //Vector3 lockerVector;
                 ModuleRWR.RWRContact rwrC;
 
                 for (int i = 0; i < rWR.contacts.Length; i++)
@@ -45,11 +44,18 @@ namespace WebpageTelemetry
                         Debug.Log($"Player {player.name} is locked by {locker.name}");
                     }
                 }
-                //lockerVector = FloatingOrigin.WorldToGlobalPoint(locker.position).toVector3;
-                //Ppos = FloatingOrigin.WorldToGlobalPoint(player.position).toVector3;
+                Debug.Log($"WorldToWRWPosition {dashRWR.WorldToRWRPosition(locker.position)}");
+                Vector2 lk = dashRWR.WorldToRWRPosition(locker.position);
+                if (lk.x > 0 && lk.y > 0) { return (int)sector.NE; }
+                if (lk.x < 0 && lk.y > 0) { return (int)sector.NW; }
+                if (lk.x < 0 && lk.y < 0) { return (int)sector.SW; }
+                if (lk.x > 0 && lk.y < 0) { return (int)sector.SE; }
 
+            } else 
+            { 
                 return 0;
-            } else { return 0; }//islockedIf
+            }//islockedIf
+            return 0;
         }//getMPos
 
 

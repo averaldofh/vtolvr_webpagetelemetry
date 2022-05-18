@@ -142,12 +142,13 @@ namespace WebpageTelemetry
             try
             {
                 FuelTank tank = player.GetComponentInChildren<FuelTank>();
-                tmp = (int)tank.fuelFraction*100;
+                tmp = Mathf.RoundToInt(tank.fuelFraction*100);
 
                 if (tmp <= 0)
                 {
-                    tmp = (int)tank.totalFuel;
-                    tmp = map(tmp, 0, (int)tank.maxFuel, 0, 100);
+                    tmp = 0;
+                    //tmp = (int)tank.totalFuel;
+                    //tmp = map(tmp, 0, (int)tank.maxFuel, 0, 100);
                 }
                 return tmp;
             }

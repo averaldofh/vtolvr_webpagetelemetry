@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>VTOL VR Telemetry w270 x h675</title>
+		 <link rel="icon" type="image/x-icon" href="https://api.iconify.design/mdi:airplane-cog.svg?color=%23888888">
+<script>
+const myTimeout = setTimeout(reload, 300);
+
+function reload() {
+window.location.reload();
+}
+
+</script>
+		<style>
+	.sts {
+		width: 260px;
+		color: lime;
+  background-color: rgba(0,0,0,0.85);
+  border: 0px solid black;
+  border-collapse: collapse;
+}	table {
+  border-collapse: collapse;
+  border: 2px solid black;
+}	body { min-width: 260px; min-height:300px; text-align: center;}
+	.wrapper { width: 260px; margin: 0 auto; text-align: left;font-family: "Lucida Console", monospace; font-size:22px; }
+  meter
+  {
+    position: relative;
+    width: 260px;
+    height: 50px;
+    transform: translate(0,0);
+  }
+</style>
+	</head>
+	
+	<body style="background-color: rgba(0,0,0,0)">
+	  <table class="wrapper" id="refreshing">
+	        <tr>
+        <td class="sts" align="center">STATUS</td>
+      </tr>
+      <tr>
+        <td class="sts" id="altitude">Alt: 16272 ft</td>
+      </tr>
+      <tr>
+        <td class="sts" id="speed">Speed: 621 kt</td>
+      </tr>
+      <tr>
+        <td class="sts" id="hdg">HDG: 338</td>
+      </tr>
+      <tr>
+        <td class="sts" id="vspd">Vspd: 403 ft/min</td>
+      </tr>
+      <tr>
+        <td class="sts" id="gforce">G Force: 1</td>
+      </tr>
+      <tr>
+        <td class="sts" id="health">Health: 100%</td>
+      </tr>
+      <tr>
+        <td align="center" class="sts" style="border-style: solid black; border-width: 2px 2px 0px 2px;">FUEL</td>
+      </tr><tr style="border-style:solid black;border-width: 0px 2px 2px 2px;">
+        <td class="sts">
+        <meter id="fuel" min="0" max="100" value="50" low="25" title="fuelqty"></meter>
+        </td>
+      </tr>
+      <tr>
+        <td class="sts" style="border-style: solid black; border-width: 2px 2px 0px 2px;">
+          <img id="lock" src="lockoff.png" align="center" vertical-align="center">
+        </td>
+      </tr>
+	        <tr>
+        <td class="sts" style="border-style: solid black; border-width: 2px 2px 0px 2px;">
+          <img id="missile" src="missileoff.png" align="center" vertical-align="center">
+        </td>
+      </tr>
+	  	        <tr>
+        <td class="sts" style="border-style: solid black; border-width: 2px 2px 0px 2px;">
+          <img id="rwr" src="OFF.webp" align="center" vertical-align="center" width="258">
+        </td>
+      </tr>
+    </table>
+	
+	</body>
+
+</html>

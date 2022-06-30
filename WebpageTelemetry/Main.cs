@@ -10,13 +10,14 @@ using UnityEngine.Events;
 
 namespace WebpageTelemetry
 {
+      
     static class Globals
     {
 
         public static string projectName = "Webpage Telemetry";
         public static string projectAuthor = "Averaldo";
-        public static string projectVersion = "v1.1";
-        public static string path = "VTOLVR_ModLoader\\mods\\webpagetelemetry\\";
+        public static string projectVersion = "v1.3";
+        public static string path = "VTOLVR_ModLoader\\mods\\Webpage_Telemetry\\";
 
     }
     public class Main : VTOLMOD
@@ -31,6 +32,13 @@ namespace WebpageTelemetry
         public UnityAction<bool> dataChanged;
         public bool rwrEnabled = true;
         public bool dataEnabled = true;
+        public static Actor playerActor;
+        public static Actor lockerActor;
+        public static GameObject playerVehicle;
+        public static ModuleRWR rWR;
+        public static DashRWR dashRWR;
+        public static FuelTank tank;
+        public static MissileDetector md;
 
         // This method is run once, when the Mod Loader is done initialising this game object
         public override void ModLoaded()
@@ -52,6 +60,7 @@ namespace WebpageTelemetry
             VTOLAPI.CreateSettingsMenu(settings);
 
             Debug.Log($"{Globals.projectName} - Mod {Globals.projectVersion} by {Globals.projectAuthor} loaded!");
+
         }
 
         public void dataEnabledChange(bool newval)
@@ -78,8 +87,6 @@ namespace WebpageTelemetry
 
             System.IO.File.Create(Globals.path + "status.txt");
             dataGetter = new DataGetters(this);
-
-
         }
 
         //This method is called every frame by Unity. Here you'll probably put most of your code
@@ -100,16 +107,9 @@ namespace WebpageTelemetry
 
                 if (runlogger)
                 {
-                    try
+                    if (dataEnabled)
                     {
-                        if (dataEnabled)
-                        {
-                            dataGetter.GetData(rwrEnabled);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.LogException(ex);
+                        dataGetter.GetData(rwrEnabled);
                     }
 
                     VTOLScenes sceneLoop = VTOLAPI.currentScene;
@@ -117,7 +117,6 @@ namespace WebpageTelemetry
                     {
                         case VTOLScenes.Akutan:
                         case VTOLScenes.CustomMapBase:
-                        case VTOLScenes.VehicleConfiguration:
                             break;
                         default:
                             ResetLogger();
@@ -125,6 +124,17 @@ namespace WebpageTelemetry
                     }
                 }
             }
+        }
+
+        public void startLog()
+        {
+            runlogger = true;
+            playerActor = FlightSceneManager.instance.playerActor;
+            rWR = playerActor.GetComponentInChildren<ModuleRWR>();
+            dashRWR = VTOLAPI.GetPlayersVehicleGameObject().GetComponentInChildren<DashRWR>();
+            playerVehicle = VTOLAPI.GetPlayersVehicleGameObject();
+            md = playerActor.GetComponentInChildren<MissileDetector>();
+            tank = VTOLAPI.GetPlayersVehicleGameObject().GetComponentInChildren<FuelTank>();
         }
 
         //This function is called every time a scene is loaded. this behaviour is defined in Awake().
@@ -138,11 +148,12 @@ namespace WebpageTelemetry
                 case VTOLScenes.ReadyRoom:
                 case VTOLScenes.LoadingScene:
                 case VTOLScenes.VehicleConfiguration:
+                    ResetLogger();
                     break;
                 case VTOLScenes.Akutan:
                 case VTOLScenes.CustomMapBase:
                     Debug.Log("Done Waiting map load");
-                    runlogger = true;
+                    startLog();
                     break;
             }
         }

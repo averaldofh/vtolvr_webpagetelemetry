@@ -4,7 +4,7 @@
 		<title>VTOL VR Telemetry w270 x h675</title>
 		 <link rel="icon" type="image/x-icon" href="https://api.iconify.design/mdi:airplane-cog.svg?color=%23888888">
 <script>
-const myTimeout = setTimeout(reload, 300);
+const myTimeout = setInterval(reload, 300);
 
 function reload() {
 window.location.reload();
@@ -39,43 +39,43 @@ window.location.reload();
         <td class="sts" align="center">STATUS</td>
       </tr>
       <tr>
-        <td class="sts" id="altitude">Alt: 16272 ft</td>
+        <td class="sts" id="altitude">Alt: 1478 ft</td>
       </tr>
       <tr>
-        <td class="sts" id="speed">Speed: 621 kt</td>
+        <td class="sts" id="speed">Speed: 14 kt</td>
       </tr>
       <tr>
-        <td class="sts" id="hdg">HDG: 338</td>
+        <td class="sts" id="hdg">HDG: 184</td>
       </tr>
       <tr>
-        <td class="sts" id="vspd">Vspd: 403 ft/min</td>
+        <td class="sts" id="vspd">Vspd: 0 ft/min</td>
       </tr>
       <tr>
-        <td class="sts" id="gforce">G Force: 1</td>
+        <td class="sts" id="gforce">G Force: 2,94</td>
       </tr>
       <tr>
-        <td class="sts" id="health">Health: 100%</td>
+        <td class="sts" id="health">Health: 0%</td>
       </tr>
       <tr>
         <td align="center" class="sts" style="border-style: solid black; border-width: 2px 2px 0px 2px;">FUEL</td>
       </tr><tr style="border-style:solid black;border-width: 0px 2px 2px 2px;">
         <td class="sts">
-        <meter id="fuel" min="0" max="100" value="50" low="25" title="fuelqty"></meter>
+        <meter id="fuel" min="0" max="100" value="24" low="25" title="fuelqty"></meter>
         </td>
       </tr>
       <tr>
         <td class="sts" style="border-style: solid black; border-width: 2px 2px 0px 2px;">
-          <img id="lock" src="lockoff.png" align="center" vertical-align="center">
+          <img id="lock" src="res/lockoff.png" align="center" vertical-align="center">
         </td>
       </tr>
 	        <tr>
         <td class="sts" style="border-style: solid black; border-width: 2px 2px 0px 2px;">
-          <img id="missile" src="missileoff.png" align="center" vertical-align="center">
+          <img id="missile" src="res/missileoff.png" align="center" vertical-align="center">
         </td>
       </tr>
 	  	        <tr>
         <td class="sts" style="border-style: solid black; border-width: 2px 2px 0px 2px;">
-          <img id="rwr" src="OFF.webp" align="center" vertical-align="center" width="258">
+          <img id="rwr" src="res/OFF.webp" align="center" vertical-align="center" width="258">
         </td>
       </tr>
     </table>
